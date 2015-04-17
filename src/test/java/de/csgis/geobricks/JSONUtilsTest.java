@@ -57,7 +57,6 @@ public class JSONUtilsTest {
 				+ "   b3 : '333',"//
 				+ "}}");
 		JSONObject merged = JSONUtils.merge(original, overrides);
-		System.out.println(merged.toString());
 		assertEquals(17, merged.getInt("a"));
 		JSONObject b = merged.getJSONObject("b");
 		assertEquals("one", b.getString("b1"));

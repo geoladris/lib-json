@@ -8,7 +8,8 @@ public class JSONUtils {
 
 	public static JSONObject merge(JSONObject defaultObj, JSONObject overrides) {
 		// We create a copy of the default object
-		JSONObject ret = JSONObject.fromObject(defaultObj.toString());
+		JSONObject ret = JSONObject.fromObject(defaultObj != null
+				&& !defaultObj.isNullObject() ? defaultObj.toString() : "{}");
 
 		if (overrides != null && !overrides.isEmpty()
 				&& !overrides.isNullObject()) {

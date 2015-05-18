@@ -65,4 +65,20 @@ public class JSONUtilsTest {
 		assertEquals("two-one", b2.getString("b21"));
 		assertEquals("ooo", b2.getString("b22"));
 	}
+
+	@Test
+	public void mergeNullDefaultObject() {
+		JSONObject overrides = JSONObject.fromObject("{'a' : [7,8]}");
+
+		assertEquals(overrides, JSONUtils.merge(null, overrides));
+		assertEquals(overrides,
+				JSONUtils.merge(new JSONObject(true), overrides));
+	}
+
+	@Test
+	public void mergeNullOverrides() {
+		JSONObject defaultObj = JSONObject.fromObject("{'a' : [7,8]}");
+		JSONObject merged = JSONUtils.merge(defaultObj, null);
+		assertEquals(defaultObj, merged);
+	}
 }

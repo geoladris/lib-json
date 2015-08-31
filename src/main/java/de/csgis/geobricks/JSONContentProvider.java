@@ -15,6 +15,13 @@ import net.sf.json.JSONObject;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 
+/**
+ * Class for providing the contents of all <code>.json</code> files in a
+ * directory. It only reads each file when necessary (it has not been read yet
+ * or it has changed since the last reading).
+ * 
+ * @author vicgonco
+ */
 public class JSONContentProvider {
 	private static final Logger logger = Logger
 			.getLogger(JSONContentProvider.class);
@@ -23,12 +30,24 @@ public class JSONContentProvider {
 	private Map<String, JSONObject> contents;
 	private Map<String, Long> lastFileAccesses = new HashMap<String, Long>();
 
+	/**
+	 * Creates a new JSON content provider.
+	 * 
+	 * @param directory
+	 *            Path to the directory containing the <code>.json</code> files.
+	 */
 	public JSONContentProvider(String directory) {
 		this.directory = new File(directory);
 		this.contents = new HashMap<String, JSONObject>();
 		this.lastFileAccesses = new HashMap<String, Long>();
 	}
 
+	/**
+	 * Gets all the JSON contents.
+	 * 
+	 * @return A map with the JSON contents. Keys are file names without the
+	 *         <code>.json</code> extension. Values are file contents.
+	 */
 	public Map<String, JSONObject> get() {
 		updateContentsIfNeeded();
 		return contents;

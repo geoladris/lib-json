@@ -2,10 +2,25 @@ package de.csgis.geobricks;
 
 import net.sf.json.JSONObject;
 
+/**
+ * Utility class for operations with JSON values.
+ * 
+ * @author vicgonco
+ */
 public class JSONUtils {
 	private JSONUtils() {
 	}
 
+	/**
+	 * Merges the two JSON objects.
+	 * 
+	 * @param defaultObj
+	 *            The original object.
+	 * @param overrides
+	 *            The object used for overriding. If both objects have the same
+	 *            key, this object's value is used.
+	 * @return A new object with the merged values.
+	 */
 	public static JSONObject merge(JSONObject defaultObj, JSONObject overrides) {
 		// We create a copy of the default object
 		JSONObject ret = JSONObject.fromObject(defaultObj != null

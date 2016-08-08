@@ -1,4 +1,4 @@
-package de.csgis.geobricks;
+package de.csgis.commons;
 
 import net.sf.json.JSONObject;
 

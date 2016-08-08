@@ -1,10 +1,12 @@
-package de.csgis.geobricks;
+package de.csgis.commons;
 
 import static org.junit.Assert.assertEquals;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.junit.Test;
+
+import de.csgis.commons.JSONUtils;
 
 public class JSONUtilsTest {
 	@Test

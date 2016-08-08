@@ -1,4 +1,4 @@
-package de.csgis.geobricks;
+package de.csgis.commons;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -16,6 +16,8 @@ import org.apache.commons.io.IOUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.csgis.commons.JSONContentProvider;
 
 public class JSONContentProviderTest {
 	private File dir;

@@ -2,6 +2,8 @@
 This project adheres to [semantic versioning](http://semver.org/).
 
 ## [Unreleased]
+### Added
+- `GeoJSONPGHelper` to execute SQL `INSERT`/`UPDATE`/`DELETE` queries from GeoJSON objects.
 
 ## [1.0.1] [2016-08-10]
 ### Changed

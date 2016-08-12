@@ -3,7 +3,6 @@ language: java
 notifications:
   email:
     recipients:
-      - victor.gonzalez@geomati.co
       - notify@barbatti.de
   on_success: always
 

@@ -1,10 +1,11 @@
 language: java
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
-
 notifications:
   email:
     recipients:
+      - victor.gonzalez@geomati.co
       - notify@barbatti.de
 on_success: always
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

@@ -36,8 +36,8 @@ public class GeojsonPGHelperTest {
 	public void setup() {
 		this.gf = new GeometryFactory();
 		this.conn = mock(Connection.class);
-		this.helper = new GeojsonPGHelper(conn, TABLE, ID_COLUMN, GEOM_COLUMN,
-				SRID);
+		this.helper = new GeojsonPGHelper(TABLE, ID_COLUMN, GEOM_COLUMN, SRID);
+		this.helper.setConnection(conn);
 	}
 
 	@Test

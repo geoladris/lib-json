@@ -45,14 +45,26 @@ public class GeojsonPGHelper {
 	 * @param srid
 	 *            The SRID for the geometries.
 	 */
-	public GeojsonPGHelper(Connection conn, String table, String idColumn,
-			String geomColumn, int srid) {
+	public GeojsonPGHelper(String table, String idColumn, String geomColumn,
+			int srid) {
 		super();
 		this.idColumn = idColumn;
 		this.geomColumn = geomColumn;
 		this.table = table;
 		this.srid = srid;
-		this.conn = conn;
+	}
+
+	/**
+	 * Sets the connection to use <b>before</b> calling
+	 * {@link #insert(JSONObject)}, {@link #update(JSONObject)} and/or
+	 * {@link #delete(JSONObject)}.
+	 * 
+	 * @param connection
+	 *            The connection to use when inserting/updating/deleting
+	 *            objects.
+	 */
+	public void setConnection(Connection connection) {
+		this.conn = connection;
 	}
 
 	/**
@@ -65,6 +77,9 @@ public class GeojsonPGHelper {
 	 * @throws IOException
 	 *             if the geometry contained in the GeoJSON cannot be translated
 	 *             into WKT.
+	 * @throws NullPointerException
+	 *             if the connection has not been previously configured by
+	 *             calling {@link #setConnection(Connection)}.
 	 */
 	public void insert(JSONObject geojson) throws SQLException, IOException {
 		processFields(geojson);
@@ -87,6 +102,9 @@ public class GeojsonPGHelper {
 	 *             if the geometry contained in the GeoJSON cannot be translated
 	 *             into WKT or the GeoJSON object does not have a
 	 *             {@link #idColumn} property.
+	 * @throws NullPointerException
+	 *             if the connection has not been previously configured by
+	 *             calling {@link #setConnection(Connection)}.
 	 */
 	public void update(JSONObject geojson) throws SQLException, IOException {
 		processFields(geojson);
@@ -118,6 +136,9 @@ public class GeojsonPGHelper {
 	 * @throws IOException
 	 *             if the GeoJSON object does not have an {@link #idColumn}
 	 *             property.
+	 * @throws NullPointerException
+	 *             if the connection has not been previously configured by
+	 *             calling {@link #setConnection(Connection)}.
 	 */
 	public void delete(JSONObject geojson) throws SQLException, IOException {
 		String sql = "DELETE FROM " + this.table + " WHERE " + this.idColumn
@@ -167,5 +188,9 @@ public class GeojsonPGHelper {
 		st.setInt(j++, srid);
 
 		return st;
+	}
+
+	public String getTable() {
+		return table;
 	}
 }

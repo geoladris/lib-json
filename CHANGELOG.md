@@ -2,6 +2,8 @@
 This project adheres to [semantic versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.1.0] [2016-09-06]
 ### Added
 - `GeoJSONPGHelper` to execute SQL `INSERT`/`UPDATE`/`DELETE` queries from GeoJSON objects.
 
@@ -14,6 +16,7 @@ This project adheres to [semantic versioning](http://semver.org/).
 - `JSONUtils` utility class for merging JSON objects.
 - `JSONContentProvider` for reading `.json` files in a directory.
 
-[Unreleased]: https://github.com/csgis/lib-json/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/csgis/lib-json/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/csgis/lib-json/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/csgis/lib-json/compare/1.0.0...1.0.1
 

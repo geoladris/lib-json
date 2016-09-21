@@ -30,11 +30,11 @@
 	<distributionManagement>
 		<repository>
 			<id>csgis-mvn-releases</id>
-			<url>scpexe://service-sandbox.csgis.de/mnt/data/mvn/releases</url>
+			<url>scpexe://service-aws.csgis.de/mnt/data/mvn/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>csgis-mvn-snapshots</id>
-			<url>scpexe://service-sandbox.csgis.de/mnt/data/mvn/snapshots</url>
+			<url>scpexe://service-aws.csgis.de/mnt/data/mvn/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 

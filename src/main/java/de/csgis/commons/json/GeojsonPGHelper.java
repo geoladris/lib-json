@@ -39,8 +39,6 @@ public class GeojsonPGHelper {
 	 * GeoJSON objects. A helper is meant to work on a single table in a PostGIS
 	 * database.
 	 * 
-	 * @param conn
-	 *            The connection to the database.
 	 * @param table
 	 *            The table to use for inserts, updates and deletes.
 	 * @param idColumn
@@ -138,8 +136,7 @@ public class GeojsonPGHelper {
 	 * 
 	 * @param geojson
 	 *            The GeoJSON object to delete. Only the <code>idField</code>
-	 *            (see
-	 *            {@link #GeojsonPGHelper(Connection, String, String, String, int)})
+	 *            (see {@link #GeojsonPGHelper(String, String, String, int)})
 	 *            property is used.
 	 * @throws SQLException
 	 *             if the object cannot be deleted.

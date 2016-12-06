@@ -3,6 +3,12 @@ This project adheres to [semantic versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.1] [2016-12-06]
+
+### Fixed
+
+- `GeoJSONPGHelper` not handling dates. Now it parses strings as dates when having the following format: `yyyy-MM-dd'T'HH:mm:ss.SSSX`.
+
 ## [1.1.0] [2016-09-06]
 ### Added
 - `GeoJSONPGHelper` to execute SQL `INSERT`/`UPDATE`/`DELETE` queries from GeoJSON objects.

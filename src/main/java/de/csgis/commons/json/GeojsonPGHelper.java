@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.geotools.geojson.geom.GeometryJSON;
 
@@ -26,6 +30,9 @@ public class GeojsonPGHelper {
 
 	// Variables containing temporary values for building SQL queries
 	private String fields, values;
+
+	// Date management
+	private SimpleDateFormat format;
 
 	/**
 	 * Creates a new helper to insert, update and/or delete database rows from
@@ -52,6 +59,9 @@ public class GeojsonPGHelper {
 		this.geomColumn = geomColumn;
 		this.table = table;
 		this.srid = srid;
+
+		this.format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
+		this.format.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
 
 	/**
@@ -172,9 +182,16 @@ public class GeojsonPGHelper {
 			throws SQLException, IOException {
 		PreparedStatement st = this.conn.prepareStatement(sql);
 		JSONObject properties = geojson.getJSONObject(GEOJSON_PROPS);
+
 		int j = 1;
 		for (Object key : properties.keySet()) {
-			st.setObject(j++, properties.get(key));
+			Object value = properties.get(key);
+			try {
+				Date date = this.format.parse(value.toString());
+				st.setDate(j++, new java.sql.Date(date.getTime()));
+			} catch (ParseException e) {
+				st.setObject(j++, value);
+			}
 		}
 
 		String geoJsonGeom = geojson.getJSONObject(GEOJSON_GEOM).toString();

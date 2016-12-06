@@ -8,8 +8,12 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Calendar;
+
+import javax.xml.bind.DatatypeConverter;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.geotools.geojson.geom.GeometryJSON;
@@ -196,6 +200,23 @@ public class GeojsonPGHelperTest {
 		this.helper.delete(geojson);
 
 		verify(st).setObject(1, 1);
+		verify(st).executeUpdate();
+	}
+
+	@Test
+	public void updateDates() throws Exception {
+		PreparedStatement st = mock(PreparedStatement.class);
+		when(conn.prepareStatement(anyString())).thenReturn(st);
+
+		String date = "2016-05-26T00:00:00.000Z";
+		JSONObject geojson = geojson(new String[]{ID_COLUMN, "date"},
+				new Object[]{1, date},
+				this.gf.createPoint(new Coordinate(10, 10)));
+
+		this.helper.update(geojson);
+		Calendar calendar = DatatypeConverter.parseDateTime(date);
+		verify(st).setObject(1, 1);
+		verify(st).setDate(2, new Date(calendar.getTimeInMillis()));
 		verify(st).executeUpdate();
 	}
 

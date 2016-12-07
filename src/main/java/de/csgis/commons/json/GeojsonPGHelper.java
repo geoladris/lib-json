@@ -32,7 +32,7 @@ public class GeojsonPGHelper {
 	private String fields, values;
 
 	// Date management
-	private SimpleDateFormat format;
+	private SimpleDateFormat[] formats;
 
 	/**
 	 * Creates a new helper to insert, update and/or delete database rows from
@@ -58,8 +58,12 @@ public class GeojsonPGHelper {
 		this.table = table;
 		this.srid = srid;
 
-		this.format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX");
-		this.format.setTimeZone(TimeZone.getTimeZone("UTC"));
+		this.formats = new SimpleDateFormat[]{
+				new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX"),
+				new SimpleDateFormat("yyyy-MM-ddX")};
+		for (SimpleDateFormat format : this.formats) {
+			format.setTimeZone(TimeZone.getTimeZone("UTC"));
+		}
 	}
 
 	/**
@@ -183,10 +187,18 @@ public class GeojsonPGHelper {
 		int j = 1;
 		for (Object key : properties.keySet()) {
 			Object value = properties.get(key);
-			try {
-				Date date = this.format.parse(value.toString());
+			Date date = null;
+			for (SimpleDateFormat format : this.formats) {
+				try {
+					date = format.parse(value.toString());
+					break;
+				} catch (ParseException e) {
+				}
+			}
+
+			if (date != null) {
 				st.setDate(j++, new java.sql.Date(date.getTime()));
-			} catch (ParseException e) {
+			} else {
 				st.setObject(j++, value);
 			}
 		}

@@ -205,10 +205,14 @@ public class GeojsonPGHelperTest {
 
 	@Test
 	public void updateDates() throws Exception {
+		testUpdateDate("2016-10-05T00:00:00.000Z");
+		testUpdateDate("2016-10-05Z");
+	}
+
+	private void testUpdateDate(String date) throws Exception {
 		PreparedStatement st = mock(PreparedStatement.class);
 		when(conn.prepareStatement(anyString())).thenReturn(st);
 
-		String date = "2016-05-26T00:00:00.000Z";
 		JSONObject geojson = geojson(new String[]{ID_COLUMN, "date"},
 				new Object[]{1, date},
 				this.gf.createPoint(new Coordinate(10, 10)));

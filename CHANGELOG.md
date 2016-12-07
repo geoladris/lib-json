@@ -3,6 +3,12 @@ This project adheres to [semantic versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.2] [2016-12-07]
+
+### Added
+
+- Support new date format in `GeoJSONPGHelper`: `yyyy-MM-ddX`.
+
 ## [1.1.1] [2016-12-06]
 
 ### Fixed

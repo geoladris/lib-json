@@ -30,11 +30,11 @@
 	<distributionManagement>
 		<repository>
 			<id>geobricks-releases</id>
-			<url>http://service-aws.csgis.de:8081/repository/releases</url>
+			<url>http://service.csgis.de/mvn/repository/releases</url>
 		</repository>
 		<snapshotRepository>
 			<id>geobricks-snapshots</id>
-			<url>http://service-aws.csgis.de:8081/repository/snapshots</url>
+			<url>http://service.csgis.de/mvn/repository/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 

@@ -3,7 +3,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.csgis.commons</groupId>
 	<artifactId>lib-json</artifactId>
-	<name>lib-json</name>
 	<version>1.2.0-SNAPSHOT</version>
 	<name>JSON library for Geoladris</name>
 	<description>Library to manage JSON files/objects for Geoladris.</description>

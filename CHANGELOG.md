@@ -3,6 +3,12 @@ This project adheres to [semantic versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.3] [2020-04-20]
+
+### Fixed
+
+- Updated OSGeo repositories to fix geotools.gt.json.14.3 dependency error.
+
 ## [1.1.2] [2016-12-07]
 
 ### Added
